@@ -10,10 +10,10 @@
 NotebookFileLineBreakTest
 NotebookFileLineBreakTest
 NotebookDataPosition[       158,          7]
-NotebookDataLength[     19743,        441]
-NotebookOptionsPosition[     19153,        418]
-NotebookOutlinePosition[     19485,        433]
-CellTagsIndexPosition[     19442,        430]
+NotebookDataLength[     22279,        499]
+NotebookOptionsPosition[     21577,        472]
+NotebookOutlinePosition[     21909,        487]
+CellTagsIndexPosition[     21866,        484]
 WindowFrame->Normal*)
 
 (* Beginning of Notebook Content *)
@@ -54,7 +54,7 @@ Cell[BoxData[{
     RowBox[{
      RowBox[{"{", 
       RowBox[{"39.3481331", ",", "72.8760069"}], "}"}], ",", " ", 
-     "\"\<Temperature\>\"", ",", " ", "days"}], "]"}]}], 
+     "\"\<WindSpeed\>\"", ",", " ", "days"}], "]"}]}], 
   ";"}], "\[IndentingNewLine]", 
  RowBox[{
   RowBox[{"data", " ", "=", " ", 
@@ -113,19 +113,25 @@ Cell[BoxData[{
           RowBox[{"#", " ", ">", " ", 
            
            TemplateBox[{
-            RowBox[{"-", "50"}],"\"\[Degree]C\"","degrees Celsius",
-             "\"DegreesCelsius\""},
+            RowBox[{"-", "1"}],
+             RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", 
+               "\[InvisibleSpace]", "\"h\""}],"kilometers per hour",
+             FractionBox["\"Kilometers\"", "\"Hours\""]},
             "Quantity"]}], " ", "&&", " ", 
           RowBox[{"#", " ", "<", " ", 
            
            TemplateBox[{
-            "50","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+            "50",RowBox[{
+              "\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+               "\"h\""}],"kilometers per hour",FractionBox[
+             "\"Kilometers\"", "\"Hours\""]},
             "Quantity"]}]}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
      RowBox[{"{", 
       RowBox[{"phase", ",", " ", 
        RowBox[{"Mean", "[", "filtered", "]"}], ",", " ", 
        RowBox[{"Min", "[", "filtered", "]"}], ",", " ", 
        RowBox[{"Max", "[", "filtered", "]"}], ",", " ", 
+       RowBox[{"StandardDeviation", "[", "filtered", "]"}], ",", " ", 
        RowBox[{"Length", "[", "filtered", "]"}]}], "}"}]}], 
     "\[IndentingNewLine]", ")"}]}], ";"}], "\[IndentingNewLine]", 
  RowBox[{
@@ -143,8 +149,8 @@ Cell[BoxData[{
        RowBox[{
        "\"\<Phase\>\"", ",", " ", "\"\<Mean \[Degree]C\>\"", ",", " ", 
         "\"\<Min \[Degree]C\>\"", ",", " ", "\"\<Max \[Degree]C\>\"", ",", 
-        " ", "\"\<Values processed\>\""}], "}"}], "}"}], ",", " ", "stat"}], 
-    "]"}], ",", " ", 
+        " ", "\"\<StdDeviation\>\"", ",", " ", "\"\<Values processed\>\""}], 
+       "}"}], "}"}], ",", " ", "stat"}], "]"}], ",", " ", 
    RowBox[{"Frame", "\[Rule]", "All"}]}], 
   "]"}], "\[IndentingNewLine]"}], "Input",
  CellChangeTimes->{{3.6805723220689077`*^9, 3.680572351425826*^9}, {
@@ -206,7 +212,8 @@ Cell[BoxData[{
    3.680593201117688*^9, 3.680593227127248*^9}, {3.680593262817499*^9, 
    3.680593454821974*^9}, {3.680593504565341*^9, 3.680593513436521*^9}, {
    3.680593589232901*^9, 3.680593607425675*^9}, {3.680593773355091*^9, 
-   3.6805938029718227`*^9}}],
+   3.6805938029718227`*^9}, {3.680594478794107*^9, 3.6805945759743557`*^9}, {
+   3.6805946289240313`*^9, 3.6805946607916393`*^9}}],
 
 Cell[BoxData[
  RowBox[{
@@ -220,9 +227,10 @@ be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
 ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
 ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
 "MSG",
- CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
-  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
-  3.680593998281268*^9}],
+ CellChangeTimes->{
+  3.680593457439354*^9, 3.680593528828425*^9, 3.6805935629772663`*^9, 
+   3.680593612861408*^9, 3.680593780256308*^9, 3.680593998281268*^9, {
+   3.6805944859773693`*^9, 3.680594517270849*^9}, 3.680594602933258*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -236,9 +244,10 @@ be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
 ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
 ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
 "MSG",
- CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
-  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
-  3.680593998300438*^9}],
+ CellChangeTimes->{
+  3.680593457439354*^9, 3.680593528828425*^9, 3.6805935629772663`*^9, 
+   3.680593612861408*^9, 3.680593780256308*^9, 3.680593998281268*^9, {
+   3.6805944859773693`*^9, 3.680594517270849*^9}, 3.680594602950542*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -252,9 +261,10 @@ be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
 ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
 ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
 "MSG",
- CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
-  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
-  3.6805939983241653`*^9}],
+ CellChangeTimes->{
+  3.680593457439354*^9, 3.680593528828425*^9, 3.6805935629772663`*^9, 
+   3.680593612861408*^9, 3.680593780256308*^9, 3.680593998281268*^9, {
+   3.6805944859773693`*^9, 3.680594517270849*^9}, 3.680594603004044*^9}],
 
 Cell[BoxData[
  RowBox[{
@@ -267,9 +277,10 @@ Cell[BoxData[
 \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
 ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/stop\\\", \
 ButtonNote -> \\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
- CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
-  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
-  3.680593998347645*^9}],
+ CellChangeTimes->{
+  3.680593457439354*^9, 3.680593528828425*^9, 3.6805935629772663`*^9, 
+   3.680593612861408*^9, 3.680593780256308*^9, 3.680593998281268*^9, {
+   3.6805944859773693`*^9, 3.680594517270849*^9}, 3.680594603005102*^9}],
 
 Cell[BoxData[
  GraphicsBox[{{}, {{
@@ -291,62 +302,89 @@ Cell[BoxData[
      InsetBox["0.25`", {195., -585.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       "7.464919053549186`","\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "4.5460821643286575`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {585., -585.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       RowBox[{"-", "23.17`"}],"\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "0",RowBox[{
+         "\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {975., -585.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       "26.115000000000002`","\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "23.71`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {1365., -585.}, {Center, Center}, {360., 360.}], 
-     InsetBox["803", {1755., -585.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["499", {1755., -585.}, {Center, Center}, {360., 360.}]}, {
      InsetBox["0.5`", {195., -975.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       "6.681979665071768`","\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "4.294642857142857`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {585., -975.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       RowBox[{"-", "48.46000000000006`"}],"\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "0",RowBox[{
+         "\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {975., -975.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       "27.17`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "22.04`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {1365., -975.}, {Center, Center}, {360., 360.}], 
-     InsetBox["418", {1755., -975.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["266", {1755., -975.}, {Center, Center}, {360., 360.}]}, {
      InsetBox["0.75`", {195., -1365.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       "6.468860381861573`","\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "4.152538167938932`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {585., -1365.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       RowBox[{"-", "46.790000000000056`"}],"\"\[Degree]C\"",
-        "degrees Celsius","\"DegreesCelsius\""},
+       "0",RowBox[{
+         "\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {975., -1365.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       "28.06`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "33.52`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {1365., -1365.}, {Center, Center}, {360., 360.}], 
-     InsetBox["419", {1755., -1365.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["262", {1755., -1365.}, {Center, Center}, {360., 360.}]}, {
      InsetBox["1.`", {195., -1755.}, {Center, Center}, {360., 360.}], InsetBox[
       TemplateBox[{
-       "6.2375030525030555`","\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "3.89225352112676`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {585., -1755.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       RowBox[{"-", "43.45000000000006`"}],"\"\[Degree]C\"","degrees Celsius",
-        "\"DegreesCelsius\""},
+       "0",RowBox[{
+         "\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {975., -1755.}, {Center, Center}, {360., 360.}], 
      InsetBox[
       TemplateBox[{
-       "29.78`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "40.56`",
+        RowBox[{"\"km\"", "\[InvisibleSpace]", "\"/\"", "\[InvisibleSpace]", 
+          "\"h\""}],"kilometers per hour",FractionBox[
+        "\"Kilometers\"", "\"Hours\""]},
        "QuantityTF"], {1365., -1755.}, {Center, Center}, {360., 360.}], 
-     InsetBox["819", {1755., -1755.}, {Center, Center}, {360., 360.}]}}, 
+     InsetBox["497", {1755., -1755.}, {Center, Center}, {360., 360.}]}}, 
    StyleBox[{{}, {LineBox[{{0, 0}, {0, -390.}}], 
       LineBox[{{0, -390.}, {0, -780.}}], LineBox[{{0, -780.}, {0, -1170.}}], 
       LineBox[{{0, -1170.}, {0, -1560.}}], 
@@ -406,8 +444,24 @@ Cell[BoxData[
     Antialiasing->False]},
   ContentSelectable->True,
   PlotRangePadding->{6, 5}]], "Output",
- CellChangeTimes->{3.680593563472247*^9, 3.680593613455937*^9, 
-  3.680593780802676*^9, 3.680593998769237*^9}]
+ CellChangeTimes->{
+  3.680593563472247*^9, 3.680593613455937*^9, 3.680593780802676*^9, 
+   3.680593998769237*^9, {3.680594493978055*^9, 3.6805945178440657`*^9}, 
+   3.680594603462565*^9}]
+}, Open  ]],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[
+ RowBox[{"Export", "[", 
+  RowBox[{
+  "\"\</home/eugene/projects/auto_wolfram_games/moon-and-weather/result.png\>\
+\"", ",", "%1942", ",", "\"\<PNG\>\""}], "]"}]], "Input",
+ NumberMarks->False],
+
+Cell[BoxData["\<\"/home/eugene/projects/auto_wolfram_games/moon-and-weather/\
+result.png\"\>"], "Output",
+ CellChangeTimes->{3.680594453303824*^9}]
 }, Open  ]],
 
 Cell[BoxData[""], "Input",
@@ -434,15 +488,19 @@ CellTagsIndex->{}
 Notebook[{
 Cell[558, 20, 512, 10, 77, "Input"],
 Cell[CellGroupData[{
-Cell[1095, 34, 8351, 174, 376, "Input"],
-Cell[9449, 210, 692, 14, 23, "Message"],
-Cell[10144, 226, 692, 14, 23, "Message"],
-Cell[10839, 242, 694, 14, 23, "Message"],
-Cell[11536, 258, 663, 13, 23, "Message"],
-Cell[12202, 273, 6727, 136, 375, "Output"]
+Cell[1095, 34, 8809, 181, 397, "Input"],
+Cell[9907, 217, 767, 15, 23, "Message"],
+Cell[10677, 234, 767, 15, 23, "Message"],
+Cell[11447, 251, 767, 15, 23, "Message"],
+Cell[12217, 268, 738, 14, 23, "Message"],
+Cell[12958, 284, 8001, 165, 375, "Output"]
 }, Open  ]],
-Cell[18944, 412, 91, 1, 32, "Input"],
-Cell[19038, 415, 111, 1, 55, "Input"]
+Cell[CellGroupData[{
+Cell[20996, 454, 207, 5, 32, "Input"],
+Cell[21206, 461, 147, 2, 32, "Output"]
+}, Open  ]],
+Cell[21368, 466, 91, 1, 32, "Input"],
+Cell[21462, 469, 111, 1, 55, "Input"]
 }
 ]
 *)
