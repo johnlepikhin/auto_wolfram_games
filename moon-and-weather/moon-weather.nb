@@ -1,0 +1,450 @@
+(* Content-type: application/vnd.wolfram.mathematica *)
+
+(*** Wolfram Notebook File ***)
+(* http://www.wolfram.com/nb *)
+
+(* CreatedBy='Mathematica 10.2' *)
+
+(*CacheID: 234*)
+(* Internal cache information:
+NotebookFileLineBreakTest
+NotebookFileLineBreakTest
+NotebookDataPosition[       158,          7]
+NotebookDataLength[     19743,        441]
+NotebookOptionsPosition[     19153,        418]
+NotebookOutlinePosition[     19485,        433]
+CellTagsIndexPosition[     19442,        430]
+WindowFrame->Normal*)
+
+(* Beginning of Notebook Content *)
+Notebook[{
+Cell[BoxData[
+ RowBox[{"(*", " ", 
+  RowBox[{"Check", " ", "well", " ", "knoen", " ", "mountaineers", " ", 
+   RowBox[{"theorem", ":", " ", 
+    RowBox[{
+    "during", " ", "a", " ", "full", " ", "moon", " ", "it", " ", "is", " ", 
+     "often", " ", "good", " ", "weather", "\[IndentingNewLine]", "Short", 
+     " ", "answer"}], ":", " ", "NO"}]}], "\[IndentingNewLine]", 
+  "*)"}]], "Input",
+ CellChangeTimes->{{3.680594133894134*^9, 3.6805941688670473`*^9}, {
+  3.680594199187192*^9, 3.6805942163503733`*^9}}],
+
+Cell[CellGroupData[{
+
+Cell[BoxData[{
+ RowBox[{
+  RowBox[{"days", "=", 
+   RowBox[{"{", 
+    RowBox[{
+    "\"\<2010-01-01\>\"", ",", " ", "\"\<2016-10-20\>\"", ",", " ", 
+     "\"\<Day\>\""}], "}"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"getMoons", "[", "d_", "]"}], ":=", 
+   RowBox[{
+    RowBox[{"getMoons", "[", "d", "]"}], "=", 
+    RowBox[{"MoonPhase", "[", "d", "]"}]}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"moons", "=", 
+   RowBox[{"getMoons", "[", "days", "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"temps", "=", 
+   RowBox[{"WeatherData", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"39.3481331", ",", "72.8760069"}], "}"}], ",", " ", 
+     "\"\<Temperature\>\"", ",", " ", "days"}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"data", " ", "=", " ", 
+   RowBox[{"TimeSeriesThread", "[", 
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{"a", ",", " ", "a"}], "]"}], ",", " ", 
+     RowBox[{"{", 
+      RowBox[{"moons", ",", " ", "temps"}], "}"}]}], "]"}]}], 
+  ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"values", " ", "=", " ", 
+   RowBox[{"GroupBy", "[", 
+    RowBox[{
+     RowBox[{
+      RowBox[{
+       RowBox[{"data", "[", 
+        RowBox[{"[", "2", "]"}], "]"}], "[", 
+       RowBox[{"[", "1", "]"}], "]"}], "[", 
+      RowBox[{"[", "1", "]"}], "]"}], ",", " ", 
+     RowBox[{
+      RowBox[{"Ceiling", "[", 
+       RowBox[{
+        RowBox[{"#", "[", 
+         RowBox[{"[", "1", "]"}], "]"}], ",", " ", "0.25"}], "]"}], "&"}]}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"values", " ", "=", " ", 
+   RowBox[{"KeyValueMap", "[", 
+    RowBox[{
+     RowBox[{"Function", "[", 
+      RowBox[{
+       RowBox[{"{", 
+        RowBox[{"k", ",", "v"}], "}"}], ",", " ", 
+       RowBox[{"{", 
+        RowBox[{"k", ",", 
+         RowBox[{"Map", "[", 
+          RowBox[{"Last", ",", "v"}], "]"}]}], "}"}]}], "]"}], ",", 
+     "values"}], "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{
+   RowBox[{"makeStat", "[", "v_", "]"}], ":=", 
+   RowBox[{"(", "\[IndentingNewLine]", 
+    RowBox[{
+     RowBox[{"phase", "=", 
+      RowBox[{"v", "[", 
+       RowBox[{"[", "1", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"vs", "=", 
+      RowBox[{"v", "[", 
+       RowBox[{"[", "2", "]"}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"filtered", "=", 
+      RowBox[{"Select", "[", 
+       RowBox[{"vs", ",", " ", 
+        RowBox[{
+         RowBox[{
+          RowBox[{"#", " ", ">", " ", 
+           
+           TemplateBox[{
+            RowBox[{"-", "50"}],"\"\[Degree]C\"","degrees Celsius",
+             "\"DegreesCelsius\""},
+            "Quantity"]}], " ", "&&", " ", 
+          RowBox[{"#", " ", "<", " ", 
+           
+           TemplateBox[{
+            "50","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+            "Quantity"]}]}], "&"}]}], "]"}]}], ";", "\[IndentingNewLine]", 
+     RowBox[{"{", 
+      RowBox[{"phase", ",", " ", 
+       RowBox[{"Mean", "[", "filtered", "]"}], ",", " ", 
+       RowBox[{"Min", "[", "filtered", "]"}], ",", " ", 
+       RowBox[{"Max", "[", "filtered", "]"}], ",", " ", 
+       RowBox[{"Length", "[", "filtered", "]"}]}], "}"}]}], 
+    "\[IndentingNewLine]", ")"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{
+  RowBox[{"stat", " ", "=", " ", 
+   RowBox[{"SortBy", "[", 
+    RowBox[{
+     RowBox[{"makeStat", " ", "/@", " ", "values"}], ",", " ", "First"}], 
+    "]"}]}], ";"}], "\[IndentingNewLine]", 
+ RowBox[{"GraphicsGrid", "[", 
+  RowBox[{
+   RowBox[{"Join", "[", 
+    RowBox[{
+     RowBox[{"{", 
+      RowBox[{"{", 
+       RowBox[{
+       "\"\<Phase\>\"", ",", " ", "\"\<Mean \[Degree]C\>\"", ",", " ", 
+        "\"\<Min \[Degree]C\>\"", ",", " ", "\"\<Max \[Degree]C\>\"", ",", 
+        " ", "\"\<Values processed\>\""}], "}"}], "}"}], ",", " ", "stat"}], 
+    "]"}], ",", " ", 
+   RowBox[{"Frame", "\[Rule]", "All"}]}], 
+  "]"}], "\[IndentingNewLine]"}], "Input",
+ CellChangeTimes->{{3.6805723220689077`*^9, 3.680572351425826*^9}, {
+   3.680572492654657*^9, 3.680572580477098*^9}, {3.680572716480195*^9, 
+   3.6805727197502604`*^9}, {3.680572870307809*^9, 3.680572870430037*^9}, {
+   3.680573212018052*^9, 3.680573234839657*^9}, {3.680573268040077*^9, 
+   3.6805733478215427`*^9}, {3.680573461619481*^9, 3.680573462267297*^9}, {
+   3.680573529957877*^9, 3.680573533291157*^9}, {3.680573591808648*^9, 
+   3.6805735959684277`*^9}, {3.6805736930148573`*^9, 3.680573693167482*^9}, {
+   3.6805737302157183`*^9, 3.680573756486371*^9}, {3.6805742620331297`*^9, 
+   3.680574288712082*^9}, {3.6805745743220377`*^9, 3.680574590634912*^9}, {
+   3.6805841201173973`*^9, 3.6805841262646923`*^9}, {3.6805841649468193`*^9, 
+   3.680584195114996*^9}, {3.680584267052142*^9, 3.680584328286729*^9}, {
+   3.680584368515313*^9, 3.680584371139724*^9}, {3.680584474675302*^9, 
+   3.680584498435444*^9}, {3.680584529560004*^9, 3.68058454435961*^9}, {
+   3.6805846041131687`*^9, 3.680584656676292*^9}, {3.680584804857849*^9, 
+   3.6805848050123053`*^9}, {3.6805849863538713`*^9, 3.680585040160809*^9}, {
+   3.6805853062837887`*^9, 3.680585328428776*^9}, {3.680585501148383*^9, 
+   3.680585525967876*^9}, {3.680585624854027*^9, 3.680585639506422*^9}, {
+   3.680585687906708*^9, 3.680585718759169*^9}, {3.68058579558178*^9, 
+   3.6805857995479803`*^9}, {3.680585967677642*^9, 3.680586001933378*^9}, {
+   3.68058603929473*^9, 3.680586043229309*^9}, {3.680586077137199*^9, 
+   3.6805861221064253`*^9}, {3.680586163320052*^9, 3.6805861819212008`*^9}, {
+   3.680586290721348*^9, 3.6805863217368*^9}, {3.6805863915790367`*^9, 
+   3.680586566070162*^9}, {3.680586644698537*^9, 3.680586689666532*^9}, {
+   3.6805867244220257`*^9, 3.680586756701932*^9}, {3.6805868006553*^9, 
+   3.68058680556184*^9}, {3.680586836181493*^9, 3.6805870009661837`*^9}, {
+   3.6805871213892307`*^9, 3.680587125013555*^9}, {3.6805871589045963`*^9, 
+   3.680587162327828*^9}, {3.680587192717448*^9, 3.680587314919033*^9}, {
+   3.6805873543256283`*^9, 3.680587395312133*^9}, {3.68058743020818*^9, 
+   3.680587445189918*^9}, {3.680587554026169*^9, 3.680587626871855*^9}, {
+   3.6805876627875347`*^9, 3.6805876629483747`*^9}, {3.680587798522027*^9, 
+   3.680587858944563*^9}, {3.68058790867128*^9, 3.680587932329485*^9}, {
+   3.680587962933876*^9, 3.680587966041141*^9}, {3.680588007465467*^9, 
+   3.6805880408922997`*^9}, {3.680588072594914*^9, 3.6805881860646877`*^9}, {
+   3.680588223574402*^9, 3.680588226784773*^9}, {3.680588493959931*^9, 
+   3.6805885081279783`*^9}, {3.680588707373439*^9, 3.680588712198303*^9}, {
+   3.68058907171694*^9, 3.680589126075266*^9}, 3.680589198002521*^9, {
+   3.680589309795672*^9, 3.6805895500382566`*^9}, {3.6805895915401983`*^9, 
+   3.680589622275992*^9}, {3.680589766550519*^9, 3.6805897713736057`*^9}, {
+   3.6805900991862917`*^9, 3.6805901333133507`*^9}, {3.680590173997794*^9, 
+   3.680590176174258*^9}, {3.68059028932026*^9, 3.680590358875922*^9}, {
+   3.6805904529421062`*^9, 3.6805904539299173`*^9}, {3.680590498995013*^9, 
+   3.680590506620987*^9}, {3.680590559522752*^9, 3.6805906024940453`*^9}, {
+   3.680590941337105*^9, 3.680590941633045*^9}, {3.680591058322267*^9, 
+   3.6805910652134867`*^9}, {3.680591109570478*^9, 3.680591161337812*^9}, {
+   3.680591197001255*^9, 3.680591248517664*^9}, {3.680591300131199*^9, 
+   3.680591303142489*^9}, {3.680591381708157*^9, 3.680591383239841*^9}, {
+   3.680591414403762*^9, 3.680591416693035*^9}, {3.680591455726856*^9, 
+   3.680591459639204*^9}, {3.680591740391361*^9, 3.6805917415885878`*^9}, {
+   3.680591816655239*^9, 3.680591819786228*^9}, {3.6805918509511337`*^9, 
+   3.6805918568984203`*^9}, {3.680591903205119*^9, 3.680591909909731*^9}, {
+   3.68059202048488*^9, 3.680592178489482*^9}, {3.6805922577354*^9, 
+   3.680592369642253*^9}, {3.680592433218055*^9, 3.680592569598777*^9}, {
+   3.6805926555342693`*^9, 3.6805927318611193`*^9}, {3.680592794565106*^9, 
+   3.68059281622262*^9}, {3.680592859323719*^9, 3.680592866711665*^9}, {
+   3.680592899343656*^9, 3.680592924702544*^9}, {3.680592989877372*^9, 
+   3.680592998089621*^9}, {3.680593041855996*^9, 3.680593160290547*^9}, {
+   3.680593201117688*^9, 3.680593227127248*^9}, {3.680593262817499*^9, 
+   3.680593454821974*^9}, {3.680593504565341*^9, 3.680593513436521*^9}, {
+   3.680593589232901*^9, 3.680593607425675*^9}, {3.680593773355091*^9, 
+   3.6805938029718227`*^9}}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"InterpolatingFunction", "::", "dmval"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Input value \[NoBreak]\\!\\({3680467200}\\)\[NoBreak] lies \
+outside the range of data in the interpolating function. Extrapolation will \
+be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
+\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
+ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
+  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
+  3.680593998281268*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"InterpolatingFunction", "::", "dmval"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Input value \[NoBreak]\\!\\({3680553600}\\)\[NoBreak] lies \
+outside the range of data in the interpolating function. Extrapolation will \
+be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
+\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
+ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
+  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
+  3.680593998300438*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"InterpolatingFunction", "::", "dmval"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Input value \[NoBreak]\\!\\({3680640000}\\)\[NoBreak] lies \
+outside the range of data in the interpolating function. Extrapolation will \
+be used. \\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\
+\", ButtonFrame->None, \
+ButtonData:>\\\"paclet:ref/message/InterpolatingFunction/dmval\\\", \
+ButtonNote -> \\\"InterpolatingFunction::dmval\\\"]\\)\"\>"}]], "Message", \
+"MSG",
+ CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
+  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
+  3.6805939983241653`*^9}],
+
+Cell[BoxData[
+ RowBox[{
+  StyleBox[
+   RowBox[{"General", "::", "stop"}], "MessageName"], 
+  RowBox[{
+  ":", " "}], "\<\"Further output of \
+\[NoBreak]\\!\\(\\*StyleBox[\\(InterpolatingFunction :: dmval\\), \
+\\\"MessageName\\\"]\\)\[NoBreak] will be suppressed during this calculation. \
+\\!\\(\\*ButtonBox[\\\"\[RightSkeleton]\\\", ButtonStyle->\\\"Link\\\", \
+ButtonFrame->None, ButtonData:>\\\"paclet:ref/message/General/stop\\\", \
+ButtonNote -> \\\"General::stop\\\"]\\)\"\>"}]], "Message", "MSG",
+ CellChangeTimes->{3.680593457439354*^9, 3.680593528828425*^9, 
+  3.6805935629772663`*^9, 3.680593612861408*^9, 3.680593780256308*^9, 
+  3.680593998347645*^9}],
+
+Cell[BoxData[
+ GraphicsBox[{{}, {{
+     TagBox[InsetBox["Phase", {195., -195.}, {Center, Center}, {360., 360.}],
+      "InsetString"], 
+     TagBox[InsetBox[
+       RowBox[{"Mean", " ", "\[Degree]C"}], {585., -195.}, {Center, Center}, {360., 360.}],
+      "InsetString"], 
+     TagBox[InsetBox[
+       RowBox[{"Min", " ", "\[Degree]C"}], {975., -195.}, {Center, Center}, {360., 360.}],
+      "InsetString"], 
+     TagBox[InsetBox[
+       RowBox[{"Max", " ", "\[Degree]C"}], {1365., -195.}, {Center, Center}, {360., 360.}],
+      "InsetString"], 
+     TagBox[InsetBox[
+       RowBox[{"Values", " ", "processed"}], {1755., -195.}, {
+       Center, Center}, {360., 360.}],
+      "InsetString"]}, {
+     InsetBox["0.25`", {195., -585.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       "7.464919053549186`","\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {585., -585.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       RowBox[{"-", "23.17`"}],"\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {975., -585.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       "26.115000000000002`","\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {1365., -585.}, {Center, Center}, {360., 360.}], 
+     InsetBox["803", {1755., -585.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["0.5`", {195., -975.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       "6.681979665071768`","\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {585., -975.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       RowBox[{"-", "48.46000000000006`"}],"\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {975., -975.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       "27.17`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "QuantityTF"], {1365., -975.}, {Center, Center}, {360., 360.}], 
+     InsetBox["418", {1755., -975.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["0.75`", {195., -1365.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       "6.468860381861573`","\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {585., -1365.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       RowBox[{"-", "46.790000000000056`"}],"\"\[Degree]C\"",
+        "degrees Celsius","\"DegreesCelsius\""},
+       "QuantityTF"], {975., -1365.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       "28.06`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "QuantityTF"], {1365., -1365.}, {Center, Center}, {360., 360.}], 
+     InsetBox["419", {1755., -1365.}, {Center, Center}, {360., 360.}]}, {
+     InsetBox["1.`", {195., -1755.}, {Center, Center}, {360., 360.}], InsetBox[
+      TemplateBox[{
+       "6.2375030525030555`","\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {585., -1755.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       RowBox[{"-", "43.45000000000006`"}],"\"\[Degree]C\"","degrees Celsius",
+        "\"DegreesCelsius\""},
+       "QuantityTF"], {975., -1755.}, {Center, Center}, {360., 360.}], 
+     InsetBox[
+      TemplateBox[{
+       "29.78`","\"\[Degree]C\"","degrees Celsius","\"DegreesCelsius\""},
+       "QuantityTF"], {1365., -1755.}, {Center, Center}, {360., 360.}], 
+     InsetBox["819", {1755., -1755.}, {Center, Center}, {360., 360.}]}}, 
+   StyleBox[{{}, {LineBox[{{0, 0}, {0, -390.}}], 
+      LineBox[{{0, -390.}, {0, -780.}}], LineBox[{{0, -780.}, {0, -1170.}}], 
+      LineBox[{{0, -1170.}, {0, -1560.}}], 
+      LineBox[{{0, -1560.}, {0, -1950.}}], 
+      LineBox[{{390., 0}, {390., -390.}}], 
+      LineBox[{{390., -390.}, {390., -780.}}], 
+      LineBox[{{390., -780.}, {390., -1170.}}], 
+      LineBox[{{390., -1170.}, {390., -1560.}}], 
+      LineBox[{{390., -1560.}, {390., -1950.}}], 
+      LineBox[{{780., 0}, {780., -390.}}], 
+      LineBox[{{780., -390.}, {780., -780.}}], 
+      LineBox[{{780., -780.}, {780., -1170.}}], 
+      LineBox[{{780., -1170.}, {780., -1560.}}], 
+      LineBox[{{780., -1560.}, {780., -1950.}}], 
+      LineBox[{{1170., 0}, {1170., -390.}}], 
+      LineBox[{{1170., -390.}, {1170., -780.}}], 
+      LineBox[{{1170., -780.}, {1170., -1170.}}], 
+      LineBox[{{1170., -1170.}, {1170., -1560.}}], 
+      LineBox[{{1170., -1560.}, {1170., -1950.}}], 
+      LineBox[{{1560., 0}, {1560., -390.}}], 
+      LineBox[{{1560., -390.}, {1560., -780.}}], 
+      LineBox[{{1560., -780.}, {1560., -1170.}}], 
+      LineBox[{{1560., -1170.}, {1560., -1560.}}], 
+      LineBox[{{1560., -1560.}, {1560., -1950.}}], 
+      LineBox[{{1950., 0}, {1950., -390.}}], 
+      LineBox[{{1950., -390.}, {1950., -780.}}], 
+      LineBox[{{1950., -780.}, {1950., -1170.}}], 
+      LineBox[{{1950., -1170.}, {1950., -1560.}}], 
+      LineBox[{{1950., -1560.}, {1950., -1950.}}], 
+      LineBox[{{0, 0}, {390., 0}}], LineBox[{{390., 0}, {780., 0}}], 
+      LineBox[{{780., 0}, {1170., 0}}], LineBox[{{1170., 0}, {1560., 0}}], 
+      LineBox[{{1560., 0}, {1950., 0}}], LineBox[{{0, -390.}, {390., -390.}}],
+       LineBox[{{390., -390.}, {780., -390.}}], 
+      LineBox[{{780., -390.}, {1170., -390.}}], 
+      LineBox[{{1170., -390.}, {1560., -390.}}], 
+      LineBox[{{1560., -390.}, {1950., -390.}}], 
+      LineBox[{{0, -780.}, {390., -780.}}], 
+      LineBox[{{390., -780.}, {780., -780.}}], 
+      LineBox[{{780., -780.}, {1170., -780.}}], 
+      LineBox[{{1170., -780.}, {1560., -780.}}], 
+      LineBox[{{1560., -780.}, {1950., -780.}}], 
+      LineBox[{{0, -1170.}, {390., -1170.}}], 
+      LineBox[{{390., -1170.}, {780., -1170.}}], 
+      LineBox[{{780., -1170.}, {1170., -1170.}}], 
+      LineBox[{{1170., -1170.}, {1560., -1170.}}], 
+      LineBox[{{1560., -1170.}, {1950., -1170.}}], 
+      LineBox[{{0, -1560.}, {390., -1560.}}], 
+      LineBox[{{390., -1560.}, {780., -1560.}}], 
+      LineBox[{{780., -1560.}, {1170., -1560.}}], 
+      LineBox[{{1170., -1560.}, {1560., -1560.}}], 
+      LineBox[{{1560., -1560.}, {1950., -1560.}}], 
+      LineBox[{{0, -1950.}, {390., -1950.}}], 
+      LineBox[{{390., -1950.}, {780., -1950.}}], 
+      LineBox[{{780., -1950.}, {1170., -1950.}}], 
+      LineBox[{{1170., -1950.}, {1560., -1950.}}], 
+      LineBox[{{1560., -1950.}, {1950., -1950.}}]}},
+    Antialiasing->False]},
+  ContentSelectable->True,
+  PlotRangePadding->{6, 5}]], "Output",
+ CellChangeTimes->{3.680593563472247*^9, 3.680593613455937*^9, 
+  3.680593780802676*^9, 3.680593998769237*^9}]
+}, Open  ]],
+
+Cell[BoxData[""], "Input",
+ CellChangeTimes->{{3.680574301646956*^9, 3.68057430601431*^9}}],
+
+Cell[BoxData["\[IndentingNewLine]"], "Input",
+ CellChangeTimes->{{3.680572478481957*^9, 3.680572490876841*^9}}]
+},
+WindowSize->{1058, 860},
+WindowMargins->{{0, Automatic}, {8, Automatic}},
+FrontEndVersion->"10.2 for Linux x86 (64-bit) (July 6, 2015)",
+StyleDefinitions->"Default.nb"
+]
+(* End of Notebook Content *)
+
+(* Internal cache information *)
+(*CellTagsOutline
+CellTagsIndex->{}
+*)
+(*CellTagsIndex
+CellTagsIndex->{}
+*)
+(*NotebookFileOutline
+Notebook[{
+Cell[558, 20, 512, 10, 77, "Input"],
+Cell[CellGroupData[{
+Cell[1095, 34, 8351, 174, 376, "Input"],
+Cell[9449, 210, 692, 14, 23, "Message"],
+Cell[10144, 226, 692, 14, 23, "Message"],
+Cell[10839, 242, 694, 14, 23, "Message"],
+Cell[11536, 258, 663, 13, 23, "Message"],
+Cell[12202, 273, 6727, 136, 375, "Output"]
+}, Open  ]],
+Cell[18944, 412, 91, 1, 32, "Input"],
+Cell[19038, 415, 111, 1, 55, "Input"]
+}
+]
+*)
+
+(* End of internal cache information *)
